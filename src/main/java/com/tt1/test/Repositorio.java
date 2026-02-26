@@ -4,7 +4,6 @@ public class Repositorio implements IRepositorio {
 
     private IDBStub database;
 
-    // Comprobar este constructor
     public Repositorio(IDBStub database) {
         this.database = database;
     }

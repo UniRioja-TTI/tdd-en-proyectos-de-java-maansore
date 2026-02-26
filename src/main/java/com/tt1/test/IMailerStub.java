@@ -1,5 +1,5 @@
 package com.tt1.test;
 
 public interface IMailerStub {
-    public boolean sendEmail (String email);
+    public boolean sendEmail (String email, String mensaje);
 }

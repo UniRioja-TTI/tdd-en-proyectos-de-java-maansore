@@ -29,11 +29,11 @@ public class ToDo implements Serializable {
         throw new UnsupportedOperationException("Clase aún no implementada.");
     }
 
-    public LocalDate getFecha_limite(){
+    public LocalDate getFechaLimite(){
         throw new UnsupportedOperationException("Clase aún no implementada.");
     }
 
-    public void setFecha_limite(LocalDate nuevaFechaLimite){
+    public void setFechaLimite(LocalDate nuevaFechaLimite){
         throw new UnsupportedOperationException("Clase aún no implementada.");
     }
 
