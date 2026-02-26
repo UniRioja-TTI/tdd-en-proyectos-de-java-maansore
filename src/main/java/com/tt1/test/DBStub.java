@@ -9,9 +9,15 @@ public class DBStub implements IDBStub {
 
     private Map<Integer, ToDo> tasksDatabase = new HashMap<>();
     private List<String> emailsDatabase = new ArrayList<>();
+    private Integer id=0;
+
+    DBStub(){
+        throw new UnsupportedOperationException("Clase aún no implementada.");
+    }
 
     @Override
-    public void create(ToDo todo) {
+    public Integer create(ToDo todo) {
+        // Devuelve el id la tarea
         throw new UnsupportedOperationException("Clase aún no implementada.");
     }
 
@@ -21,7 +27,7 @@ public class DBStub implements IDBStub {
     }
 
     @Override
-    public void update(ToDo todo) {
+    public void update(Integer id) {
         throw new UnsupportedOperationException("Clase aún no implementada.");
     }
 
