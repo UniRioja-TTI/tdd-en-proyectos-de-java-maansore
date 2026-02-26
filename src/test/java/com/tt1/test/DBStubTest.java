@@ -29,9 +29,11 @@ public class DBStubTest {
         assertNotNull(idGenerado, "El método create debe devolver el ID de la tarea");
         assertNotNull(tareaRecuperada, "Debe recuperar la tarea con el ID generado");
 
+        /*
         assertEquals(tarea.getNombre(), tareaRecuperada.getNombre(), "El nombre debe ser idéntico");
         assertEquals(tarea.getFechaLimite(), tareaRecuperada.getFechaLimite(), "La fecha debe coincidir");
         assertEquals(tarea.getCompletado(), tareaRecuperada.getCompletado(), "El estado debe ser el mismo");
+        */
 
         assertSame(tarea, tareaRecuperada, "El Stub debería devolver la misma instancia de la tarea");
     }

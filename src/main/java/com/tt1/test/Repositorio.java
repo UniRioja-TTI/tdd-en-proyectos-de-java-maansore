@@ -19,7 +19,7 @@ public class Repositorio implements IRepositorio {
     }
 
     @Override
-    public void agnadirToDo(ToDo tarea) {
+    public Integer agnadirToDo(ToDo tarea) {
         throw new UnsupportedOperationException("Clase aún no implementada.");
     }
 
