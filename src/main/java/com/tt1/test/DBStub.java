@@ -35,4 +35,6 @@ public class DBStub implements IDBStub {
     public void delete(Integer id) {
         throw new UnsupportedOperationException("Clase aún no implementada.");
     }
+
+
 }
