@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class DBStub implements IDBStub {
 
-    private Map<Integer, ToDo> tasksDatabase = new HashMap<>();
+    private HashMap<Integer, ToDo> tasksDatabase = new HashMap<>();
     private List<String> emailsDatabase = new ArrayList<>();
     private Integer id=0;
 
