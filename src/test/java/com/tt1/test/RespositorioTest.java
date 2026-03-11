@@ -5,13 +5,12 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RespositorioTest {
     private static Repositorio repositorio;
     private static ToDo tarea;
-
+    // TODO: Revissar este test
     @BeforeAll
     static void init(){
         repositorio = new Repositorio(new DBStubMock());
@@ -35,9 +34,11 @@ public class RespositorioTest {
     @Test
     void testAgnadirEmail(){
         // Arrange
+        String email="email@email.com";
 
-        // Act
-        // Assert
+        // Act & Assert
+        assertDoesNotThrow(()->repositorio.agnadirEmail(email),"El método agnadirEmail no debería lanzar excepciones");
+        // No podemos verificar si está agnadido en memorio xq no sabemos la implementación?
     }
 
     @AfterAll
