@@ -2,6 +2,10 @@ package com.tt1.test;
 
 import java.time.LocalDate;
 
+/**
+ * Clase de servicio que gestiona la lógica principal de las tareas.
+ * Se comunica con el repositorio para alamcenar los datos y con el mailer para enviar correos.
+ */
 public class Servicio implements IServicio {
 
     private IMailerStub mailer;
@@ -11,6 +15,12 @@ public class Servicio implements IServicio {
         this.mailer=mailer;
         this.repositorio=repositorio;
     }
+
+    /**
+     * Crea y añade una nueva tarea al sistema.
+     * @param nombre Cadena de texto que contiene el nombre de la nuvea tarea.
+     * @param fechaLimite LocalDate que contiene la fecha límite de ejecución de la tarea.
+     */
 
     @Override
     public void agnadirToDo(String nombre, LocalDate fechaLimite) {
