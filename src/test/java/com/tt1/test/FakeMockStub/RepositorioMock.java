@@ -43,4 +43,8 @@ public class RepositorioMock implements IRepositorio{
         }
     }
 
+    public List<String> getEmailsDB(){
+        return this.emailsDB;
+    }
+
 }

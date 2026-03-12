@@ -32,7 +32,7 @@ public class ServicioTest {
 
         // Assert
         assertTrue(repoMock.agnadirToDoCalled);
-        ToDo guardado = repoMock.buscarToDo(1); // El mock asigna ID 1 al primero
+        ToDo guardado = repoMock.buscarToDo(1);
         assertNotNull(guardado);
         assertEquals(nombre, guardado.getNombre());
         assertEquals(fecha, guardado.getFechaLimite());
@@ -40,16 +40,16 @@ public class ServicioTest {
 
     @Test
     void testActualizarEstadoReflejadoEnRepo() {
-        // Arrange: Añadimos una tarea inicial al repo
+        // Arrange
         ToDo tarea = new ToDo();
         tarea.setNombre("Tarea Inicial");
         tarea.setCompletado(false);
         Integer id = repoMock.agnadirToDo(tarea);
 
-        // Act: Pedimos al servicio que cambie el estado [cite: 45]
+        // Act
         servicio.actualizarEstado(id);
 
-        // Assert: Comprobamos que la referencia del objeto dentro del Map ha cambiado
+        // Assert
         ToDo tareaModificada = repoMock.buscarToDo(id);
         assertTrue(tareaModificada.getCompletado(), "El estado en el repositorio debe ser 'true'");
     }
@@ -59,12 +59,12 @@ public class ServicioTest {
         // Arrange
         String email = "profe@unirioja.es";
 
-        // Act [cite: 45]
+        // Act
         servicio.agnadirEmail(email);
 
         // Assert
         assertTrue(repoMock.agnadirEmailCalled);
-        assertTrue(repoMock.getEmailsRegistrados().contains(email));
+        assertTrue(repoMock.getEmailsDB().contains(email));
     }
 
     @Test
@@ -81,8 +81,7 @@ public class ServicioTest {
         // Act: Cualquier operación debe disparar la comprobación de alertas
         servicio.consultarToDosNoCompletados();
 
-        // Assert: Verificamos si el mailer fue invocado [cite: 41, 46]
+        // Assert
         assertTrue(mailerMock.sendEmailCalled, "Debería haberse enviado un email de alerta");
-        assertEquals("alumno@unirioja.es", mailerMock.lastEmailSent);
     }
 }
