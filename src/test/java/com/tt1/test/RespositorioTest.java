@@ -12,11 +12,12 @@ import static org.junit.jupiter.api.Assertions.*;
 public class RespositorioTest {
     private static Repositorio repositorio;
     private static ToDo tarea;
-    // TODO: Revissar este test
+
     @BeforeAll
     static void init(){
         repositorio = new Repositorio(new DBStubMock());
         tarea=new ToDo();
+        tarea.setNombre("Tarea test");
         System.out.println("Inicio");
     }
 
@@ -28,7 +29,7 @@ public class RespositorioTest {
 
         // Assert
         assertNotNull(id, "El método create debe devolver el ID de la tarea");
-        assertNotNull(tareaRecuperada,"Debe recuperar la tarea con el ID generado");
+        //assertNotNull(tareaRecuperada,"Debe recuperar la tarea con el ID generado");
 
         assertSame(tarea,tareaRecuperada,"El Repositorio debería devolver la misma instancia de la tarea");
     }

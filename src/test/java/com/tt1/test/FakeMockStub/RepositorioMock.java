@@ -21,7 +21,7 @@ public class RepositorioMock implements IRepositorio {
     @Override
     public void agnadirEmail(String email) { agnadirEmailCalled=true; emails.add(email); }
     @Override
-    public ToDo buscarToDo(Integer id) { return null; }
+    public ToDo buscarToDo(Integer id) { return tareas.get(id-1); }
     @Override
     public void actualizarEstado(Integer id, boolean estado) { }
 
