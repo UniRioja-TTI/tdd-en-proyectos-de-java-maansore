@@ -40,9 +40,10 @@ jobs:
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
-        git checkout early || git checkout -b early
-        git merge main
-        git push origin early
+        # Forzamos que la rama 'early' local sea igual a 'main'
+        git checkout -B early
+        # Usamos --force para sobrescribir 'early' en el remoto con el contenido de 'main'
+        git push origin early --force
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     #- name: Update dependency graph
