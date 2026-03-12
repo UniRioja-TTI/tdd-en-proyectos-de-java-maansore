@@ -8,26 +8,41 @@ public class Servicio implements IServicio {
     private IRepositorio repositorio;
 
     public Servicio(IMailerStub mailer, IRepositorio repositorio) {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        this.mailer=mailer;
+        this.repositorio=repositorio;
     }
 
     @Override
     public void agnadirToDo(String nombre, LocalDate fechaLimite) {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        ToDo nuevaTarea = new ToDo();
+        nuevaTarea.setNombre(nombre);
+        nuevaTarea.setFechaLimite(fechaLimite);
+        repositorio.agnadirToDo(nuevaTarea);
+        consultarToDosNoCompletados();
     }
 
     @Override
     public void agnadirEmail(String email) {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        repositorio.agnadirEmail(email);
+        consultarToDosNoCompletados();
     }
 
     @Override
     public void actualizarEstado(Integer id) {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        repositorio.actualizarEstado(id,true);
+        consultarToDosNoCompletados();
     }
 
     @Override
     public void consultarToDosNoCompletados() {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        LocalDate hoy = LocalDate.now();
+        for(ToDo tarea: repositorio.obtenerTareas()){
+            if(!tarea.getCompletado() && tarea.getFechaLimite().isBefore(hoy)){
+                String mensaje = "Alerta: La tarea '" + tarea.getNombre() + "' ha caducado.";
+                for (String email : repositorio.obtenerEmails()) {
+                    mailer.sendEmail(email, mensaje);
+                }
+            }
+        }
     }
 }
