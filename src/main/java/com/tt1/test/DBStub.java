@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Clase DBStub que simula el funcionamiento de una base de datos con sus opereaciones básicas.
+ * Simulación de una base de datos en memoria. Proporciona almaceneamiento de los objetos ToDo y las direcciones de correo.
  */
 public class DBStub implements IDBStub {
 

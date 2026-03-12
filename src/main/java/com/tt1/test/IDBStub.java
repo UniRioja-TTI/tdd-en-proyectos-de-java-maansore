@@ -2,6 +2,9 @@ package com.tt1.test;
 
 import java.util.List;
 
+/**
+ * Interfaz que establece las operaciones b'asicas de CRUD.
+ */
 public interface IDBStub {
     public Integer createToDo(ToDo todo);
     public ToDo selectToDo(Integer id);

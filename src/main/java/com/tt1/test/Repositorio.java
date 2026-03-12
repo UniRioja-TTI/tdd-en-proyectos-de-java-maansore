@@ -3,7 +3,8 @@ package com.tt1.test;
 import java.util.List;
 
 /**
- * Calse Repositorio que sirve de conexión entre la base de datos y la lógica principal del programa.
+ * Calse Repositorio que actúa como mediador entre la lógica de servicio y la
+ * persistencia de datos. Implementa operaciones de consulta y actualización de tareas y ccorreos electrónicos.
  */
 public class Repositorio implements IRepositorio {
 

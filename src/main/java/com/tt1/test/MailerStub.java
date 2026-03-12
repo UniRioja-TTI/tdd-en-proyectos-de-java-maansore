@@ -1,7 +1,8 @@
 package com.tt1.test;
 
 /**
- * Clase de MailerStub que gestiona el envío de correos.
+ * Implementación del servicio de mensajería que simula el envío de correos electrónicosñ
+ * imprimiendo los mensajes por sonsola.
  */
 public class MailerStub implements IMailerStub {
 
