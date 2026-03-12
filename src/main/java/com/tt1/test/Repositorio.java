@@ -1,5 +1,7 @@
 package com.tt1.test;
 
+import java.util.List;
+
 public class Repositorio implements IRepositorio {
 
     private IDBStub database;
@@ -10,21 +12,32 @@ public class Repositorio implements IRepositorio {
 
     @Override
     public ToDo buscarToDo(Integer id) {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        return database.selectToDo(id);
     }
 
     @Override
     public void actualizarEstado(Integer id, boolean estado) {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        ToDo todo = database.selectToDo(id);
+        if (todo != null) {
+            todo.setCompletado(estado);
+        }
     }
 
     @Override
     public Integer agnadirToDo(ToDo tarea) {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        return database.createToDo(tarea);
     }
 
     @Override
     public void agnadirEmail(String email) {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        database.agnadirEmail(email);
+    }
+
+    public List<ToDo> obtenerTareas(){
+        return database.getAllToDos();
+    }
+
+    public List<String> obtenerEmails(){
+        return database.getAllEmails();
     }
 }

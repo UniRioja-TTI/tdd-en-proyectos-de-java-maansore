@@ -16,19 +16,19 @@ public class DBStub implements IDBStub {
     }
 
     @Override
-    public Integer create(ToDo todo) {
+    public Integer createToDo(ToDo todo) {
         Integer newId=id++;
         tasksDatabase.put(newId,todo);
         return newId;
     }
 
     @Override
-    public ToDo select(Integer id) {
+    public ToDo selectToDo(Integer id) {
         return tasksDatabase.get(id);
     }
 
     @Override
-    public void update(Integer id) {
+    public void updateToDo(Integer id) {
         ToDo toDo=tasksDatabase.get(id);
         if(toDo!=null){
             toDo.setCompletado(true);
@@ -36,9 +36,34 @@ public class DBStub implements IDBStub {
     }
 
     @Override
-    public void delete(Integer id) {
+    public void deleteToDo(Integer id) {
         tasksDatabase.remove(id);
     }
 
+    @Override
+    public void agnadirEmail(String email) {
+        if(email!=null & !email.isEmpty() & !containsEmail(email)){
+            emailsDatabase.add(email);
+        }
+    }
 
+    @Override
+    public void deleteEmail(String email) {
+        emailsDatabase.remove(email);
+    }
+
+    @Override
+    public boolean containsEmail(String email) {
+        return emailsDatabase.contains(email);
+    }
+
+    @Override
+    public List<ToDo> getAllToDos() {
+        return new ArrayList<>(tasksDatabase.values());
+    }
+
+    @Override
+    public List<String> getAllEmails() {
+        return new ArrayList<>(emailsDatabase);
+    }
 }
