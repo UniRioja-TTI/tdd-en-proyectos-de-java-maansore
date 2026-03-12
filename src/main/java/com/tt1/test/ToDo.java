@@ -10,38 +10,37 @@ public class ToDo implements Serializable {
     private boolean completado;
 
     public ToDo(){
-        throw new UnsupportedOperationException("Clase aún no implementada.");
     }
 
     public String getNombre(){
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        return nombre;
     }
 
     public void setNombre(String nuevoNombre){
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        this.nombre=nuevoNombre;
     }
 
     public String getDescripcion() {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        return descripcion;
     }
 
     public void setDescripcion(String nuevaDescripcion){
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        this.descripcion=nuevaDescripcion;
     }
 
     public LocalDate getFechaLimite(){
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        return fechaLimite;
     }
 
     public void setFechaLimite(LocalDate nuevaFechaLimite){
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        this.fechaLimite=nuevaFechaLimite;
     }
 
     public boolean getCompletado(){
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        return completado;
     }
 
     public void setCompletado(boolean nuevoEstado){
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        this.completado=nuevoEstado;
     }
 }
