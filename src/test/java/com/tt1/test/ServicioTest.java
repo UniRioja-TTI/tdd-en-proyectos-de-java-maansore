@@ -10,12 +10,12 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ServicioTest {
-    private static Servicio servicio;
-    private static MailerMock mailerMock;
-    private static RepositorioMock repoMock;
+    private Servicio servicio;
+    private MailerMock mailerMock;
+    private RepositorioMock repoMock;
 
-    @BeforeAll
-    static void setUp() {
+    @BeforeEach
+    void setUp() {
         mailerMock = new MailerMock();
         repoMock = new RepositorioMock();
         servicio = new Servicio(mailerMock, repoMock);

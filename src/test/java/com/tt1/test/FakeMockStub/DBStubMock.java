@@ -18,7 +18,10 @@ public class DBStubMock implements IDBStub {
     }
 
     @Override
-    public ToDo selectToDo(Integer id) { return null; }
+    public ToDo selectToDo(Integer id) { if (id > 0 && id <= listadoTareas.size()) {
+        return listadoTareas.get(id - 1);
+    }
+        return null; }
     @Override
     public void updateToDo(Integer id) { }
     @Override

@@ -23,7 +23,7 @@ public class RepositorioMock implements IRepositorio {
     @Override
     public ToDo buscarToDo(Integer id) { return tareas.get(id-1); }
     @Override
-    public void actualizarEstado(Integer id, boolean estado) { }
+    public void actualizarEstado(Integer id, boolean estado) { tareas.get(id-1).setCompletado(true); }
 
     @Override
     public List<ToDo> obtenerTareas() { return tareas; }

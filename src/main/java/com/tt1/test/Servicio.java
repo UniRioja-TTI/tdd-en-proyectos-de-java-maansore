@@ -37,7 +37,7 @@ public class Servicio implements IServicio {
     public void consultarToDosNoCompletados() {
         LocalDate hoy = LocalDate.now();
         for(ToDo tarea: repositorio.obtenerTareas()){
-            if(!tarea.getCompletado() && tarea.getFechaLimite().isBefore(hoy)){
+            if(!tarea.getCompletado() && tarea.getFechaLimite()!=null && tarea.getFechaLimite().isBefore(hoy)){
                 String mensaje = "Alerta: La tarea '" + tarea.getNombre() + "' ha caducado.";
                 for (String email : repositorio.obtenerEmails()) {
                     mailer.sendEmail(email, mensaje);
