@@ -1,5 +1,8 @@
 package com.tt1.test;
 
+/**
+ * Clase de MailerStub que gestiona el envío de correos.
+ */
 public class MailerStub implements IMailerStub {
 
     MailerStub(){

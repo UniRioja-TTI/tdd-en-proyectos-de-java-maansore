@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Clase DBStub que simula el funcionamiento de una base de datos con sus opereaciones básicas.
+ */
 public class DBStub implements IDBStub {
 
     private HashMap<Integer, ToDo> tasksDatabase = new HashMap<>();

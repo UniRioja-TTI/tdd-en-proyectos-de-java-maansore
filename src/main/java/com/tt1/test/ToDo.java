@@ -37,26 +37,50 @@ public class ToDo implements Serializable {
         this.nombre=nuevoNombre;
     }
 
+    /**
+     * Obtiene la descripción de la tarea
+     * @return Una cadena de texto que contiene la descripción de la tarea.
+     */
     public String getDescripcion() {
         return descripcion;
     }
 
+    /**
+     * Modifica la descripción de la tarea.
+     * @param nuevaDescripcion Una cadena de texto que contiene la descripción de la tarea.
+     */
     public void setDescripcion(String nuevaDescripcion){
         this.descripcion=nuevaDescripcion;
     }
 
+    /**
+     * Obtiene la fecha límite de realización de la tarea.
+     * @return Una LocalDate que contiene la fecha límite de realización de la tarea.
+     */
     public LocalDate getFechaLimite(){
         return fechaLimite;
     }
 
+    /**
+     * Modifica la fecha límite de realización de la tarea.
+     * @param nuevaFechaLimite Un LocalDate que contiene la nueva fecha límite de la tarea.
+     */
     public void setFechaLimite(LocalDate nuevaFechaLimite){
         this.fechaLimite=nuevaFechaLimite;
     }
 
+    /**
+     * Obtiene el estado de completitud de la tarea.
+     * @return Booleano que contiene el estado de la tarea.
+     */
     public boolean getCompletado(){
         return completado;
     }
 
+    /**
+     * Modifica el estado de completitud de la tarea.
+     * @param nuevoEstado Booleano que contiene el nuevo estado de la tarea.
+     */
     public void setCompletado(boolean nuevoEstado){
         this.completado=nuevoEstado;
     }

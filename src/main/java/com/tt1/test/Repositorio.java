@@ -2,6 +2,9 @@ package com.tt1.test;
 
 import java.util.List;
 
+/**
+ * Calse Repositorio que sirve de conexión entre la base de datos y la lógica principal del programa.
+ */
 public class Repositorio implements IRepositorio {
 
     private IDBStub database;
