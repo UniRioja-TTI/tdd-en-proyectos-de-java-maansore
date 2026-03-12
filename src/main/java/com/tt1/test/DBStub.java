@@ -12,28 +12,32 @@ public class DBStub implements IDBStub {
     private Integer id=0;
 
     DBStub(){
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+
     }
 
     @Override
     public Integer create(ToDo todo) {
-        // Devuelve el id la tarea
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        Integer newId=id++;
+        tasksDatabase.put(newId,todo);
+        return newId;
     }
 
     @Override
     public ToDo select(Integer id) {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        return tasksDatabase.get(id);
     }
 
     @Override
     public void update(Integer id) {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        ToDo toDo=tasksDatabase.get(id);
+        if(toDo!=null){
+            toDo.setCompletado(true);
+        }
     }
 
     @Override
     public void delete(Integer id) {
-        throw new UnsupportedOperationException("Clase aún no implementada.");
+        tasksDatabase.remove(id);
     }
 
 
