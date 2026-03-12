@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DBStubTest {
@@ -22,8 +24,8 @@ public class DBStubTest {
     public void testCreateSelect(){
 
         // Arrange & Act
-        Integer idGenerado = dbStub.create(tarea);
-        ToDo tareaRecuperada = dbStub.select(idGenerado);
+        Integer idGenerado = dbStub.createToDo(tarea);
+        ToDo tareaRecuperada = dbStub.selectToDo(idGenerado);
 
         //Assert
         assertNotNull(idGenerado, "El método create debe devolver el ID de la tarea");
@@ -34,19 +36,17 @@ public class DBStubTest {
         assertEquals(tarea.getFechaLimite(), tareaRecuperada.getFechaLimite(), "La fecha debe coincidir");
         assertEquals(tarea.getCompletado(), tareaRecuperada.getCompletado(), "El estado debe ser el mismo");
 
-
-        //assertSame(tarea, tareaRecuperada, "El Stub debería devolver la misma instancia de la tarea");
     }
 
     @Test
     void testUpdate(){
         // Arrange
         tarea.setCompletado(false);
-        Integer id = dbStub.create(tarea);
+        Integer id = dbStub.createToDo(tarea);
 
         // Act
-        dbStub.update(id);
-        ToDo tareaPostUpdate = dbStub.select(id);
+        dbStub.updateToDo(id);
+        ToDo tareaPostUpdate = dbStub.selectToDo(id);
 
         // Assert
         assertEquals(tarea.getCompletado(),true, "El estado debe de ser 'completado'");
@@ -56,16 +56,61 @@ public class DBStubTest {
     @Test
     void testDelete() {
         // Arrange
-        Integer id = dbStub.create(tarea);
-        assertNotNull(dbStub.select(id));
+        Integer id = dbStub.createToDo(tarea);
+        assertNotNull(dbStub.selectToDo(id));
 
         // Act
-        dbStub.delete(id);
+        dbStub.deleteToDo(id);
 
         // Assert
-        assertNull(dbStub.select(id), "Tras borrar el ID, la búsqueda debe devolver null");
+        assertNull(dbStub.selectToDo(id), "Tras borrar el ID, la búsqueda debe devolver null");
     }
 
+    @Test
+    void testCreateEmails() {
+        // Act
+        DBStub db = new DBStub();
+        String email = "test@unirioja.es";
+
+        // Arrange
+        db.agnadirEmail(email);
+        // Assert
+        assertTrue(db.containsEmail(email), "El email debería existir en la base");
+    }
+
+    @Test
+    void testDeletenEmails() {
+        // Act
+        DBStub db = new DBStub();
+        String email = "test@unirioja.es";
+
+        // Arrange
+        db.agnadirEmail(email);
+        db.deleteEmail(email);
+
+        // Assert
+        assertFalse(db.containsEmail(email), "El email debería haber sido borrado");
+    }
+
+    @Test
+    void testGetAllToDos() {
+        DBStub db = new DBStub();
+        db.createToDo(new ToDo());
+        db.createToDo(new ToDo());
+
+        List<ToDo> lista = db.getAllToDos();
+        assertEquals(2, lista.size(), "Debería recuperar las 2 tareas creadas");
+    }
+
+    @Test
+    void testGetAllEmails() {
+        DBStub db = new DBStub();
+        db.agnadirEmail("a@test.com");
+        db.agnadirEmail("b@test.com");
+
+        List<String> lista = db.getAllEmails();
+        assertEquals(2, lista.size(), "Debería recuperar los 2 emails de la agenda");
+    }
 
     @AfterAll
     public static void fin(){

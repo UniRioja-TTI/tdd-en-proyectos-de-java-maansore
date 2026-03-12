@@ -64,7 +64,7 @@ public class ServicioTest {
 
         // Assert
         assertTrue(repoMock.agnadirEmailCalled);
-        assertTrue(repoMock.getEmailsDB().contains(email));
+        assertTrue(repoMock.obtenerEmails().contains(email));
     }
 
     @Test
@@ -84,4 +84,31 @@ public class ServicioTest {
         // Assert
         assertTrue(mailerMock.sendEmailCalled, "Debería haberse enviado un email de alerta");
     }
+
+    @Test
+    void testEnvioAlertas() {
+        // Arrange
+        MailerMock mailerMock = new MailerMock();
+        RepositorioMock repoMock = new RepositorioMock();
+        Servicio servicio = new Servicio(mailerMock, repoMock);
+
+        ToDo t1 = new ToDo(); t1.setFechaLimite(LocalDate.now().minusDays(1)); t1.setCompletado(false);
+        ToDo t2 = new ToDo(); t2.setFechaLimite(LocalDate.now().minusDays(2)); t2.setCompletado(false);
+        ToDo tOk = new ToDo(); tOk.setFechaLimite(LocalDate.now().plusDays(1)); tOk.setCompletado(false);
+
+        repoMock.agnadirToDo(t1);
+        repoMock.agnadirToDo(t2);
+        repoMock.agnadirToDo(tOk);
+
+        repoMock.agnadirEmail("admin@test.com");
+        repoMock.agnadirEmail("user1@test.com");
+        repoMock.agnadirEmail("user2@test.com");
+
+        // Act
+        servicio.consultarToDosNoCompletados();
+
+        // Assert
+        assertEquals(6, mailerMock.recordatoriosEnviados, "El sistema debería enviar exactamente 6 correos de alerta");
+    }
+
 }

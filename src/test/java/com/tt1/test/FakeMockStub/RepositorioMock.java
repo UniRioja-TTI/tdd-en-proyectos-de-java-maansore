@@ -2,49 +2,31 @@ package com.tt1.test.FakeMockStub;
 
 import com.tt1.test.IRepositorio;
 import com.tt1.test.ToDo;
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-public class RepositorioMock implements IRepositorio{
-    public boolean agnadirToDoCalled=false;
-    public boolean agnadirEmailCalled=false;
-
-    private Map<Integer, ToDo> todosDB = new HashMap<>();
-    private List<String> emailsDB = new ArrayList<>();
-    private int idCounter = 0;
+public class RepositorioMock implements IRepositorio {
+    private List<ToDo> tareas = new ArrayList<>();
+    private List<String> emails = new ArrayList<>();
+    public boolean agnadirToDoCalled = false;
+    public boolean agnadirEmailCalled = false;
 
     @Override
-    public Integer agnadirToDo(ToDo tarea){
-        this.agnadirToDoCalled=true;
-        Integer id = idCounter++;
-        todosDB.put(id,tarea);
-        return id;
+    public Integer agnadirToDo(ToDo tarea) {
+        agnadirToDoCalled = true;
+        tareas.add(tarea);
+        return tareas.size();
     }
 
     @Override
-    public void agnadirEmail(String email) {
-        this.agnadirEmailCalled=true;
-        this.emailsDB.add(email);
-    }
+    public void agnadirEmail(String email) { agnadirEmailCalled=true; emails.add(email); }
+    @Override
+    public ToDo buscarToDo(Integer id) { return null; }
+    @Override
+    public void actualizarEstado(Integer id, boolean estado) { }
 
     @Override
-    public ToDo buscarToDo(Integer id) {
-        return todosDB.get(id);
-    }
-
+    public List<ToDo> obtenerTareas() { return tareas; }
     @Override
-    public void actualizarEstado(Integer id, boolean estado) {
-        ToDo tarea = todosDB.get(id);
-        if(tarea!=null){
-            tarea.setCompletado(estado);
-        }
-    }
-
-    public List<String> getEmailsDB(){
-        return this.emailsDB;
-    }
-
+    public List<String> obtenerEmails() { return emails; }
 }

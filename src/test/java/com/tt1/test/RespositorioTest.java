@@ -5,6 +5,8 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RespositorioTest {
@@ -39,6 +41,22 @@ public class RespositorioTest {
         // Act & Assert
         assertDoesNotThrow(()->repositorio.agnadirEmail(email),"El método agnadirEmail no debería lanzar excepciones");
         // No podemos verificar si está agnadido en memorio xq no sabemos la implementación?
+    }
+
+    @Test
+    void testObtenerListas() {
+        DBStubMock mockDb = new DBStubMock();
+        Repositorio repo = new Repositorio(mockDb);
+
+        mockDb.agnadirEmail("agenda@test.com");
+        repo.agnadirToDo(new ToDo());
+
+        List<ToDo> tareas = repo.obtenerTareas();
+        List<String> emails = repo.obtenerEmails();
+
+        // Ns yo...
+        assertFalse(tareas.isEmpty(), "El repositorio debe devolver las tareas del stub");
+        assertEquals(1, emails.size(), "El repositorio debe devolver los emails del stub");
     }
 
     @AfterAll

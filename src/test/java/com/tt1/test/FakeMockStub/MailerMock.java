@@ -4,10 +4,12 @@ import com.tt1.test.IMailerStub;
 
 public class MailerMock implements IMailerStub {
     public boolean sendEmailCalled = false;
+    public int recordatoriosEnviados = 0;
 
     @Override
     public boolean sendEmail(String email, String mensaje) {
         sendEmailCalled=true;
+        recordatoriosEnviados++;
         return true;
     }
 }
